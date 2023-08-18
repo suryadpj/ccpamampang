@@ -257,7 +257,7 @@
                             <tr>
                                 <td>@if($find_sin->salesdate == null) - @else {{ date('d/m/Y', strtotime($find_sin->salesdate)) }} @endif</td>
                                 <td>@if($find_sin->expiredfs == null) - @else {{ date('d/m/Y', strtotime($find_sin->expiredfs)) }} @endif</td>
-                                <td>{{ $find->salesbranch }}</td>
+                                <td>{{ $find_sin->salesbranch }}</td>
                             </tr>
                             <tr>
                                 <th>Status Kend.</th>
