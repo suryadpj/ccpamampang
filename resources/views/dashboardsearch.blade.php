@@ -193,7 +193,7 @@
                                 <!--begin::Details item-->
                                 <!--begin::Details item-->
                                 <div class="fw-bold mt-5">Cakupan</div>
-                                <div class="text-gray-600">{{ $find->ringarea }}</div>
+                                <div class="text-gray-600">{{ $find->ringarea ?? 0 }}</div>
                                 <!--begin::Details item-->
                                 <!--begin::Details item-->
                                 <div class="fw-bold mt-5">Total Kendaraan</div>
