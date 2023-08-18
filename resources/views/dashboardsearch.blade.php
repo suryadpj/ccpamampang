@@ -261,23 +261,23 @@
                             </tr>
                             <tr>
                                 <th>Status Kend.</th>
-                                <td colspan="2">{{ $find->statusvehicle }}</td>
+                                <td colspan="2">{{ $find_sin->statusvehicle }}</td>
                             </tr>
                             <tr>
                                 <th>Financing Company</th>
-                                <td colspan="2">{{ $find->financingcompany }}</td>
+                                <td colspan="2">{{ $find_sin->financingcompany }}</td>
                             </tr>
                             <tr>
                                 <th>Insurance Company</th>
-                                <td colspan="2">{{ $find->insurancecompany }}</td>
+                                <td colspan="2">{{ $find_sin->insurancecompany }}</td>
                             </tr>
                             <tr>
                                 <th>Insurance Type</th>
-                                <td colspan="2">{{ $find->insurancetype }}</td>
+                                <td colspan="2">{{ $find_sin->insurancetype }}</td>
                             </tr>
                             <tr>
                                 <th>Leasing Tenor</th>
-                                <td colspan="2">{{ $find->leasingtenor }}</td>
+                                <td colspan="2">{{ $find_sin->leasingtenor }}</td>
                             </tr>
                         </table>
                         <br>
