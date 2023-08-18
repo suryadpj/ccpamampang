@@ -188,7 +188,7 @@
                                 <!--begin::Details item-->
                                 <div class="fw-bold mt-5">Alamat</div>
                                 <div class="text-gray-600">
-                                    <a href="#" class="text-gray-600 text-hover-primary">{{ $find->customeraddress }}</a>
+                                    <a href="#" class="text-gray-600 text-hover-primary">{{ $find->customeraddress ?? '' }}</a>
                                 </div>
                                 <!--begin::Details item-->
                                 <!--begin::Details item-->
