@@ -277,7 +277,7 @@
                             </tr>
                             <tr>
                                 <th>Leasing Tenor</th>
-                                <td colspan="2">{{ $find_sin->leasingtenor }}</td>
+                                <td colspan="2">{{ $find_sin->leasingtenure }}</td>
                             </tr>
                         </table>
                         <br>
