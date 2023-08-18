@@ -456,9 +456,9 @@
                                                 <td>
                                                     <span class="badge badge-light-success"><a href="caridata?search={{ $find_sin->policeregno}}"> {{ $find_sin->policeregno }} </a></span>
                                                 </td>
-                                                <td>{{ $find->vinnumber }}</td>
-                                                <td>{{ $find->tipekendaraan }}</td>
-                                                <td>{{ $find->freepart }}</td>
+                                                <td>{{ $find->vinnumber ?? $find_sin->vinnumber }}</td>
+                                                <td>{{ $find->tipekendaraan ?? $find_sin->tipekendaraan }}</td>
+                                                <td>{{ $find->freepart ?? $find_sin->freepart }}</td>
                                                 <td>
                                                     @if($find_sin->pkbdate == null)
                                                         -
