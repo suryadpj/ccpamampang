@@ -30,7 +30,7 @@ class HomeController extends Controller
         $hitung_pengguna = DB::table('databaseid')->count();
         $hitung_kendaraan = DB::table('singlevin')->distinct('vinnumber')->count('vinnumber');
         $modal="";
-        $recently = \DB::table('logsearch')->where('created_at','LIKE',date('Y-m-d').'%')->get();
+        $recently = \DB::table('logsearch')->where('created_at','LIKE',date('Y-m-d').'%')->distinct()->select('name',DB::raw('DATE_FORMAT(created_at,"%d %M %Y") AS tanggal'))->get();
         $hitung = count($recently);
         return view('dashboard',['dicari' => '','hitung_kendaraan' => $hitung_kendaraan,'hitung_pengguna' => $hitung_pengguna,'modal' => $modal,'recent' => $recently,'hitung' => $hitung]);
     }
