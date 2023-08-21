@@ -403,7 +403,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td class="fw-bold min-w-125px w-125px">TMO Offering</td>
-                                                        <td class="text-gray-600">: {{ $find_sin->historyoil }} &nbsp; {{ $find_sin->suggesttire }}</td>
+                                                        <td class="text-gray-600">: {{ $find_sin->suggestoil }} &nbsp; {{ $find_sin->suggesttire }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="fw-bold min-w-125px w-125px">Others Info</td>

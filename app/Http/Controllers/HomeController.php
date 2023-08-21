@@ -30,10 +30,13 @@ class HomeController extends Controller
         $hitung_pengguna = DB::table('databaseid')->count();
         $hitung_kendaraan = DB::table('singlevin')->distinct('vinnumber')->count('vinnumber');
         $modal="";
-        return view('dashboard',['dicari' => '','hitung_kendaraan' => $hitung_kendaraan,'hitung_pengguna' => $hitung_pengguna,'modal' => $modal]);
+        $recently = \DB::table('logsearch')->where('created_at','LIKE',date('Y-m-d').'%')->get();
+        $hitung = count($recently);
+        return view('dashboard',['dicari' => '','hitung_kendaraan' => $hitung_kendaraan,'hitung_pengguna' => $hitung_pengguna,'modal' => $modal,'recent' => $recently,'hitung' => $hitung]);
     }
     public function caridata(request $request)
     {
+        $data_user = Auth::user();
         $dicari = $request->search;
         $hitung_pengguna = DB::table('databaseid')->count();
         $hitung_kendaraan = DB::table('singlevin')->distinct('vinnumber')->count('vinnumber');
@@ -52,18 +55,29 @@ class HomeController extends Controller
             $modal = 0;
             if($hitung > 0)
             {
-                return view('dashboardsearch',['dicari' => $dicari,'treatment' => $find_treatment,'hitung' => $hitung,'hitung_kendaraan' => $hitung_kendaraan,'hitung_pengguna' => $hitung_pengguna,'find' => $find_dbid,'find_sin_hst' => $find_sin_hst,'find_sin_all' => $find_sin_all,'find_sin' => $find_sin,'modalempty' => $modal]);
+                $datacari = array(
+                    'IDUser'    => $data_user->id,
+                    'name'      => $dicari,
+                );
+                DB::table('logsearch')->insert($datacari);
+                $recently = \DB::table('logsearch')->where('created_at','LIKE',date('Y-m-d').'%')->distinct()->select('name',DB::raw('DATE_FORMAT(created_at,"%d %M %Y") AS tanggal'))->get();
+                $hitung = count($recently);
+                return view('dashboardsearch',['dicari' => $dicari,'treatment' => $find_treatment,'hitung' => $hitung,'hitung_kendaraan' => $hitung_kendaraan,'hitung_pengguna' => $hitung_pengguna,'find' => $find_dbid,'find_sin_hst' => $find_sin_hst,'find_sin_all' => $find_sin_all,'find_sin' => $find_sin,'modalempty' => $modal, 'recent' => $recently,'hitung' => $hitung]);
             }
             else
             {
+                $recently = \DB::table('logsearch')->where('created_at','LIKE',date('Y-m-d').'%')->distinct()->select('name',DB::raw('DATE_FORMAT(created_at,"%d %M %Y") AS tanggal'))->get();
+                $hitung = count($recently);
                 $modal = "showalertempty";
-                return view('dashboard',['dicari' => $dicari,'hitung_kendaraan' => $hitung_kendaraan,'hitung_pengguna' => $hitung_pengguna,'modalempty' => $modal]);
+                return view('dashboard',['dicari' => $dicari,'hitung_kendaraan' => $hitung_kendaraan,'hitung_pengguna' => $hitung_pengguna,'modalempty' => $modal, 'recent' => $recently,'hitung' => $hitung]);
             }
         }
         else
         {
+            $recently = \DB::table('logsearch')->where('created_at','LIKE',date('Y-m-d').'%')->distinct()->select('name',DB::raw('DATE_FORMAT(created_at,"%d %M %Y") AS tanggal'))->get();
+            $hitung = count($recently);
             $modal = "showalertempty";
-            return view('dashboard',['dicari' => $dicari,'hitung_kendaraan' => $hitung_kendaraan,'hitung_pengguna' => $hitung_pengguna,'modal' => $modal]);
+            return view('dashboard',['dicari' => $dicari,'hitung_kendaraan' => $hitung_kendaraan,'hitung_pengguna' => $hitung_pengguna,'modal' => $modal, 'recent' => $recently,'hitung' => $hitung]);
         }
     }
 }

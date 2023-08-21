@@ -184,13 +184,8 @@ License: For each use you must have a valid license purchased only from above li
 											<!--end::Svg Icon-->
 											<!--end::Icon-->
 											<!--begin::Input-->
-											<input type="text" class="form-control form-control rounded-1 ps-13" name="search" placeholder="Cari Data" value='{{ $dicari ?? '' }}' />
+											<input type="text" class="search-input form-control form-control rounded-1 ps-13" name="search" placeholder="Cari Data" value='{{ $dicari ?? '' }}'  data-kt-search-element="input" />
 											<!--end::Input-->
-											<!--begin::Spinner-->
-											<span class="search-spinner position-absolute top-50 end-0 translate-middle-y lh-0 d-none me-5" data-kt-search-element="spinner">
-												<span class="spinner-border h-15px w-15px align-middle text-gray-400"></span>
-											</span>
-											<!--end::Spinner-->
 											<!--begin::Reset-->
 											<span class="search-reset btn btn-flush btn-active-color-primary position-absolute top-50 end-0 translate-middle-y lh-0 d-none me-4" data-kt-search-element="clear">
 												<!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
@@ -208,6 +203,78 @@ License: For each use you must have a valid license purchased only from above li
 										<!--begin::Menu-->
 										<div data-kt-search-element="content" class="menu menu-sub menu-sub-dropdown w-300px w-md-350px py-7 px-7 overflow-hidden">
 											<!--begin::Wrapper-->
+											<div data-kt-search-element="wrapper">
+												<!--begin::Recently viewed-->
+												<div class="" data-kt-search-element="main">
+													<!--begin::Heading-->
+													<div class="d-flex flex-stack fw-semibold mb-4">
+														<!--begin::Label-->
+														<span class="text-muted fs-6 me-2">Recently Searched:</span>
+														<!--end::Label-->
+													</div>
+													<!--end::Heading-->
+													<!--begin::Items-->
+													<div class="scroll-y mh-200px mh-lg-325px">
+                                                        @if($hitung == 0)
+                                                            belum ada yang anda cari
+                                                        @else
+                                                            @foreach ($recent as $a)
+                                                                <!--begin::Item-->
+                                                                <div class="d-flex align-items-center mb-5">
+                                                                    <!--begin::Symbol-->
+                                                                    <div class="symbol symbol-40px me-4">
+                                                                        <span class="symbol-label bg-light">
+                                                                            <!--begin::Svg Icon | path: icons/duotune/electronics/elc004.svg-->
+                                                                            <span class="svg-icon svg-icon-2 svg-icon-primary">
+                                                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                    <path opacity="0.3" d="M5.78001 21.115L3.28001 21.949C3.10897 22.0059 2.92548 22.0141 2.75004 21.9727C2.57461 21.9312 2.41416 21.8418 2.28669 21.7144C2.15923 21.5869 2.06975 21.4264 2.0283 21.251C1.98685 21.0755 1.99507 20.892 2.05201 20.7209L2.886 18.2209L7.22801 13.879L10.128 16.774L5.78001 21.115Z" fill="currentColor"/>
+                                                                                    <path d="M21.7 8.08899L15.911 2.30005C15.8161 2.2049 15.7033 2.12939 15.5792 2.07788C15.455 2.02637 15.3219 1.99988 15.1875 1.99988C15.0531 1.99988 14.92 2.02637 14.7958 2.07788C14.6717 2.12939 14.5589 2.2049 14.464 2.30005L13.74 3.02295C13.548 3.21498 13.4402 3.4754 13.4402 3.74695C13.4402 4.01849 13.548 4.27892 13.74 4.47095L14.464 5.19397L11.303 8.35498C10.1615 7.80702 8.87825 7.62639 7.62985 7.83789C6.38145 8.04939 5.2293 8.64265 4.332 9.53601C4.14026 9.72817 4.03256 9.98855 4.03256 10.26C4.03256 10.5315 4.14026 10.7918 4.332 10.984L13.016 19.667C13.208 19.859 13.4684 19.9668 13.74 19.9668C14.0115 19.9668 14.272 19.859 14.464 19.667C15.3575 18.77 15.9509 17.618 16.1624 16.3698C16.374 15.1215 16.1932 13.8383 15.645 12.697L18.806 9.53601L19.529 10.26C19.721 10.452 19.9814 10.5598 20.253 10.5598C20.5245 10.5598 20.785 10.452 20.977 10.26L21.7 9.53601C21.7952 9.44108 21.8706 9.32825 21.9221 9.2041C21.9737 9.07995 22.0002 8.94691 22.0002 8.8125C22.0002 8.67809 21.9737 8.54505 21.9221 8.4209C21.8706 8.29675 21.7952 8.18392 21.7 8.08899Z" fill="currentColor"/>
+                                                                                </svg>
+                                                                            </span>
+                                                                            <!--end::Svg Icon-->
+                                                                        </span>
+                                                                    </div>
+                                                                    <!--end::Symbol-->
+                                                                    <!--begin::Title-->
+                                                                    <div class="d-flex flex-column">
+                                                                        <a href="caridata?search={{ $a->name }}" class="fs-6 text-gray-800 text-hover-primary fw-semibold">{{ $a->name }}</a>
+                                                                        <span class="fs-7 text-muted fw-semibold">{{ $a->tanggal }}</span>
+                                                                    </div>
+                                                                    <!--end::Title-->
+                                                                </div>
+                                                                <!--end::Item-->
+                                                            @endforeach
+                                                        @endif
+													</div>
+													<!--end::Items-->
+												</div>
+												<!--end::Recently viewed-->
+												<!--begin::Empty-->
+												<div data-kt-search-element="empty" class="text-center d-none">
+													<!--begin::Icon-->
+													<div class="pt-10 pb-10">
+														<!--begin::Svg Icon | path: icons/duotune/files/fil024.svg-->
+														<span class="svg-icon svg-icon-4x opacity-50">
+															<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path opacity="0.3" d="M14 2H6C4.89543 2 4 2.89543 4 4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V8L14 2Z" fill="currentColor" />
+																<path d="M20 8L14 2V6C14 7.10457 14.8954 8 16 8H20Z" fill="currentColor" />
+																<rect x="13.6993" y="13.6656" width="4.42828" height="1.73089" rx="0.865447" transform="rotate(45 13.6993 13.6656)" fill="currentColor" />
+																<path d="M15 12C15 14.2 13.2 16 11 16C8.8 16 7 14.2 7 12C7 9.8 8.8 8 11 8C13.2 8 15 9.8 15 12ZM11 9.6C9.68 9.6 8.6 10.68 8.6 12C8.6 13.32 9.68 14.4 11 14.4C12.32 14.4 13.4 13.32 13.4 12C13.4 10.68 12.32 9.6 11 9.6Z" fill="currentColor" />
+															</svg>
+														</span>
+														<!--end::Svg Icon-->
+													</div>
+													<!--end::Icon-->
+													<!--begin::Message-->
+													<div class="pb-15 fw-semibold">
+														<h3 class="text-gray-600 fs-5 mb-2">Mencari data</h3>
+														<div class="text-muted fs-7">Silahkan tekan enter untuk melanjutkan</div>
+													</div>
+													<!--end::Message-->
+												</div>
+												<!--end::Empty-->
+											</div>
+											<!--end::Wrapper-->
 											<!--begin::Preferences-->
 											<form data-kt-search-element="advanced-options-form" class="pt-1 d-none">
 												<!--begin::Heading-->
