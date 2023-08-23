@@ -53,7 +53,7 @@ class HomeController extends Controller
             $find_sin_hst = DB::table('singlevin')->where('vinnumber',$except)->first();
             $hitung2 = DB::table('singlevin')->where('idvalid',$idcari2)->distinct()->orderby('id','desc')->count();
             $modal = 0;
-            if($hitung > 0)
+            if($hitung2 > 0)
             {
                 $datacari = array(
                     'IDUser'    => $data_user->id,
