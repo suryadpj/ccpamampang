@@ -51,7 +51,7 @@ class HomeController extends Controller
             $except = $find_sin->vinnumber;
             $find_sin_all = DB::table('singlevin')->where('idvalid',$idcari2)->whereNotIn('vinnumber',[$except])->distinct()->select('policeregno','notlp_hp','vinnumber','tipekendaraan','freepart','pkbdate','operationdescription')->orderby('id','desc')->get();
             $find_sin_hst = DB::table('singlevin')->where('vinnumber',$except)->first();
-            $hitung = DB::table('singlevin')->where('idvalid',$idcari2)->distinct()->orderby('id','desc')->count();
+            $hitung2 = DB::table('singlevin')->where('idvalid',$idcari2)->distinct()->orderby('id','desc')->count();
             $modal = 0;
             if($hitung > 0)
             {
@@ -62,7 +62,7 @@ class HomeController extends Controller
                 DB::table('logsearch')->insert($datacari);
                 $recently = \DB::table('logsearch')->where('created_at','LIKE',date('Y-m-d').'%')->distinct()->select('name',DB::raw('DATE_FORMAT(created_at,"%d %M %Y") AS tanggal'))->get();
                 $hitung = count($recently);
-                return view('dashboardsearch',['dicari' => $dicari,'treatment' => $find_treatment,'hitung' => $hitung,'hitung_kendaraan' => $hitung_kendaraan,'hitung_pengguna' => $hitung_pengguna,'find' => $find_dbid,'find_sin_hst' => $find_sin_hst,'find_sin_all' => $find_sin_all,'find_sin' => $find_sin,'modalempty' => $modal, 'recent' => $recently,'hitung' => $hitung]);
+                return view('dashboardsearch',['dicari' => $dicari,'treatment' => $find_treatment,'hitung2' => $hitung2,'hitung_kendaraan' => $hitung_kendaraan,'hitung_pengguna' => $hitung_pengguna,'find' => $find_dbid,'find_sin_hst' => $find_sin_hst,'find_sin_all' => $find_sin_all,'find_sin' => $find_sin,'modalempty' => $modal, 'recent' => $recently,'hitung' => $hitung]);
             }
             else
             {

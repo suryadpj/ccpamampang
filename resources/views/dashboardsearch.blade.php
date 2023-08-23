@@ -197,7 +197,7 @@
                                 <!--begin::Details item-->
                                 <!--begin::Details item-->
                                 <div class="fw-bold mt-5">Total Kendaraan</div>
-                                <div class="text-gray-600">{{ $hitung }}</div>
+                                <div class="text-gray-600">{{ $hitung2 }}</div>
                                 <div class="table-responsive">
                                     <table class="table table-striped gy-7 gs-7">
                                         <thead>
